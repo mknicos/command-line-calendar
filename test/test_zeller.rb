@@ -65,7 +65,7 @@ class TestZeller < MiniTest::Unit::TestCase
    assert_equal 4, start_day
  end
 
- def test_feb_2012
+ def test_feb_1803
    start_day = Zeller.find_start_day('02', '1803')
    assert_equal 3, start_day
  end
@@ -75,9 +75,19 @@ class TestZeller < MiniTest::Unit::TestCase
    assert_equal 0, start_day
  end
 
- def test_march_2014
+ def test_july_1800
    start_day = Zeller.find_start_day('07', '1800')
    assert_equal 3, start_day
+ end
+
+ def test_dec_2012
+   start_day = Zeller.find_start_day('12', '2012')
+   assert_equal 0, start_day
+ end
+
+ def test_year_3000
+   start_day = Zeller.find_start_day('05', '3000')
+   assert_equal 5, start_day
  end
 
 end
