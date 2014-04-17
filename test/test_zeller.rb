@@ -3,10 +3,6 @@ require "zeller"
 
 class TestZeller < MiniTest::Unit::TestCase
 
-  def test_my_test_run
-    assert_equal true, 2+2 == 4
-  end
-
  def test_zeller_class
    x = Zeller.new()
    assert_instance_of(Zeller, x)
