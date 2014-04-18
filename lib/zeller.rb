@@ -6,8 +6,7 @@ class Zeller
   def self.find_start_day(month_input, year_input)
 
     year = year_input.to_i
-
-    month = month_input.delete("0").to_i   #remove leading zeros from month
+    month = month_input.to_i
 
     #adjust zellers congruence for jan/ feb
     if month == 1 or month == 2

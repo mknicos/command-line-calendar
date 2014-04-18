@@ -3,16 +3,18 @@
 #This is the calendar program
 require_relative "lib/zeller.rb"
 require_relative "lib/print_month.rb"
+require_relative "lib/calc.rb"
 
 month = ARGV[0]
 year  = ARGV[1]
 
 raise ArgumentError, "Cal only accepts a 2 digit month"  unless month.to_s.length == 2
 raise ArgumentError, "Cal only accepts a 4 digit year"  unless year.to_s.length == 4
-month = month.delete("0").to_i   #remove leading zeros from month
-year = year.to_i
+month = month.to_s.delete("0").to_i   #remove leading zeros from month
+year = year
 
 start_day = Zeller.find_start_day(month, year)
+days_in_month = Calc.num_of_days_in_month(month, year)
 
 #Reference: start days are as follows:
 #0 - Sat
@@ -24,4 +26,5 @@ start_day = Zeller.find_start_day(month, year)
 #6 - Fri
 
 puts start_day
+puts days_in_month
 
