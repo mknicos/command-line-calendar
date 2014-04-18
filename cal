@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 #This is the calendar program
 require_relative "lib/zeller.rb"
 require_relative "lib/print_month.rb"
