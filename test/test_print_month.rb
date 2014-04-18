@@ -27,8 +27,17 @@ class TestPrintMonth < MiniTest::Unit::TestCase
 
 #----------Num_spaces_for_title---------------#
   def test_num_spaces_march
-    skip
-    spaces = PrintMonth.num_spaces_for_title('January')
+    spaces = PrintMonth.num_spaces_for_title('March')
     assert_equal 5, spaces
+  end
+
+  def test_num_spaces_big_even_string_length
+    spaces = PrintMonth.num_spaces_for_title('January')
+    assert_equal 4, spaces
+  end
+
+  def test_num_spaces_odd_string_length
+    spaces = PrintMonth.num_spaces_for_title('February')
+    assert_equal 3, spaces
   end
 end

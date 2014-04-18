@@ -5,12 +5,22 @@ class PrintMonth
   def self.print_one_month(month, year)
 
     #determine month string
-    month_string = ''
-
+    month_string = self.find_month_string(month)
+    #determine how many spaces for month title are needed
 
   end
 
-  def self.num_spaces_for_title(month)
+  def self.num_spaces_for_title(month_string)
+    #the month output into command line is 20 characters wide
+    #the year will also be displayed with the month, so that
+    #is 4 characters plus one for a space between the month and year
+    #odd string length months (february) will have one less space in front
+
+    month_length = month_string.length
+    year_and_space = 5
+    line_width = 20
+    title_length = month_length + year_and_space
+    return (line_width - title_length) / 2
   end
 
   def self.find_month_string(month)
