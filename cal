@@ -33,28 +33,7 @@ end
 #5 - Fri
 #6 - Sat
 
+puts #spacing
 PrintMonth.print_one_month(month, year, start_day, days_in_month)
-puts
-counter = 0
-day = 1
-
-days_in_month.times do
-  if counter > 6
-    print "\n"
-    counter = 0
-  end
-  if day < 10
-    print day.to_s + '  '
-  else
-    print day.to_s + ' '
-  end
-  counter += 1
-  day += 1
-end
-
-puts
-
-
-
-
-
+puts #spacing
+puts #spacing

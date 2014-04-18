@@ -5,9 +5,34 @@ class PrintMonth
   def self.print_one_month(month, year, start_day, days_in_month)
     #determine month string
     month_string = self.find_month_string(month) + ' ' + year.to_s
+    
+    #print heading
     week_day_names = %w(Su Mo Tu We Th Fr Sa)
     puts month_string.center(20)
     week_day_names.each {|num| print num + ' '}
+    print "\n"
+
+    #put spaces at start of first week
+    spaces = []
+    start_day.times { spaces << "\s\s\s"}
+    
+    spaces.each{|space| print space}
+    #print days
+    counter = start_day
+    day = 1
+    days_in_month.times do
+      if counter > 6
+        print "\n"
+        counter = 0
+      end
+      if day < 10
+        print ' ' + day.to_s + ' '
+      else
+        print day.to_s + ' '
+      end
+      counter += 1
+      day += 1
+    end
 
     #title_string = month_string + ' ' + year.to_s
   end
