@@ -2,12 +2,14 @@ class PrintMonth
   def initialize
   end
 
-  def self.print_one_month(month, year)
-
+  def self.print_one_month(month, year, start_day, days_in_month)
     #determine month string
-    month_string = self.find_month_string(month)
-    #determine how many spaces for month title are needed
+    month_string = self.find_month_string(month) + ' ' + year.to_s
+    week_day_names = %w(Su Mo Tu We Th Fr Sa)
+    puts month_string.center(20)
+    week_day_names.each {|num| print num + ' '}
 
+    #title_string = month_string + ' ' + year.to_s
   end
 
   def self.num_spaces_for_title(month_string)

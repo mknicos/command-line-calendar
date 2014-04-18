@@ -11,20 +11,50 @@ year  = ARGV[1]
 raise ArgumentError, "Cal only accepts a 2 digit month"  unless month.to_s.length == 2
 raise ArgumentError, "Cal only accepts a 4 digit year"  unless year.to_s.length == 4
 month = month.to_s.delete("0").to_i   #remove leading zeros from month
-year = year
+year = year.to_i
 
 start_day = Zeller.find_start_day(month, year)
 days_in_month = Calc.num_of_days_in_month(month, year)
 
-#Reference: start days are as follows:
-#0 - Sat
-#1 - Sun
-#2 - Mon
-#3 - Tues
-#4 - Wed
-#5 - Thurs
-#6 - Fri
+#adjust zeller to make sunday 0
 
-puts start_day
-puts days_in_month
+if start_day == 0
+  start_day = 6
+else
+  start_day -= 1
+end
+
+#Reference: start days are as follows:
+#0 - Sun
+#1 - Mon
+#2 - Tues
+#3 - Wed
+#4 - Thurs
+#5 - Fri
+#6 - Sat
+
+PrintMonth.print_one_month(month, year, start_day, days_in_month)
+puts
+counter = 0
+day = 1
+
+days_in_month.times do
+  if counter > 6
+    print "\n"
+    counter = 0
+  end
+  if day < 10
+    print day.to_s + '  '
+  else
+    print day.to_s + ' '
+  end
+  counter += 1
+  day += 1
+end
+
+puts
+
+
+
+
 
