@@ -26,7 +26,15 @@ class Zeller
     part3 = century / 4
     part4 = 5 * century
 
-    (first_day_of_month + part1 + year_of_century + part2 + part3 + part4) % 7
+    start_day = (first_day_of_month + part1 + year_of_century + part2 + part3 + part4) % 7
+
+    #adjust to make sunday 0
+    if start_day == 0
+      start_day = 6
+    else
+      start_day -= 1
+    end
+    start_day
   end
 
 end

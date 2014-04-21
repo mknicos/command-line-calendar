@@ -2,7 +2,7 @@
 
 require_relative "lib/zeller.rb"
 require_relative "lib/print_month.rb"
-require_relative "lib/calc.rb"
+require_relative "lib/month.rb"
 
 month = ARGV[0]
 year  = ARGV[1]
@@ -13,23 +13,5 @@ month = month.to_s.delete("0").to_i   #remove leading zeros from month
 year = year.to_i
 
 start_day = Zeller.find_start_day(month, year)
-days_in_month = Calc.num_of_days_in_month(month, year)
-
-#adjust zeller to make sunday 0
-
-if start_day == 0
-  start_day = 6
-else
-  start_day -= 1
-end
-
-#Reference: start days are as follows:
-#0 - Sun
-#1 - Mon
-#2 - Tues
-#3 - Wed
-#4 - Thurs
-#5 - Fri
-#6 - Sat
-
+input_month = Month.new(month, year)
 PrintMonth.print_one_month(month, year, start_day, days_in_month)
