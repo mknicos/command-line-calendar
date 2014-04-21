@@ -8,9 +8,11 @@ class PrintMonth
     
     #print heading
     week_day_names = %w(Su Mo Tu We Th Fr Sa)
-    puts month_string.center(20)
-    week_day_names.each {|num| print num + ' '}
-    print "\n"
+    month_string = month_string.center(20).rstrip
+    print month_string + "\n"
+
+    #week_day_names.each {|num| print num + ' '}
+    print "Su Mo Tu We Th Fr Sa\n"
 
     #put spaces at start of first week
     spaces = []
@@ -20,21 +22,33 @@ class PrintMonth
     #print days
     counter = start_day
     day = 1
+    last_day = days_in_month
+    count_end_of_lines = 0
     days_in_month.times do
-      if counter > 6
-        print "\n"
-        counter = 0
+      if day < 10 #single digit
+        if counter < 6 #sun through fri
+          print ' ' + day.to_s + ' '
+          counter += 1
+        else #saturday
+          print ' ' + day.to_s + "\n"
+          counter = 0
+        end
+      else #double digit
+        if counter < 6 #sun through fri
+          print day.to_s + ' '
+          counter += 1
+        else #saturday
+          print day.to_s + "\n"
+          counter = 0
+        end
       end
-      if day < 10
-        print ' ' + day.to_s + ' '
-      else
-        print day.to_s + ' '
-      end
-      counter += 1
       day += 1
+      if counter > 5
+      count_end_of_lines += 1
+      end
     end
-
-    #title_string = month_string + ' ' + year.to_s
+    num_of_line_breaks_needed = 5 - count_end_of_lines
+    num_of_line_breaks_needed.times {print "\n"}
   end
 
   def self.num_spaces_for_title(month_string)

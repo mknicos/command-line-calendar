@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-#This is the calendar program
 require_relative "lib/zeller.rb"
 require_relative "lib/print_month.rb"
 require_relative "lib/calc.rb"
@@ -33,7 +32,4 @@ end
 #5 - Fri
 #6 - Sat
 
-puts #spacing
 PrintMonth.print_one_month(month, year, start_day, days_in_month)
-puts #spacing
-puts #spacing
