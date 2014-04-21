@@ -47,7 +47,7 @@ class PrintMonth
       count_end_of_lines += 1
       end
     end
-    num_of_line_breaks_needed = 5 - count_end_of_lines
+    num_of_line_breaks_needed = 6 - count_end_of_lines
     num_of_line_breaks_needed.times {print "\n"}
   end
 
