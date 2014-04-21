@@ -36,6 +36,42 @@ class Month
     end
   end
 
+  def get_line_arrays
+
+    #each array in this array represents a different line
+    day_arrays = [[],[],[],[],[],[]]
+
+    start_day = Zeller.find_start_day(@month, @year)
+
+    #space at start of fist line
+    triple_space = "\s\s\s"
+    start_day.times { day_arrays[0] << triple_space}
+
+    counter = start_day
+    days_in_month = num_of_days_in_month
+    day = 1
+    index = 0
+
+    days_in_month.times do
+      if day < 10
+        day_arrays[index] << "\s\s"
+      else
+        day_arrays[index] << "\s"
+      end
+      day_arrays[index] << day
+      counter += 1
+      day += 1
+      if counter == 6
+        counter = 0
+        index += 1
+      end
+    end
+    #add line break at end of each array
+    day_arrays.each { |array| array << "\n"}
+    return day_arrays
+  end
+
+=begin
   def self.print_month
     week_day_names = %w(Su Mo Tu We Th Fr Sa)
     puts month_string.center(20)
@@ -50,6 +86,7 @@ class Month
     #print days
     counter = start_day
     day = 1
+
     days_in_month.times do
       if counter > 6
         print "\n"
@@ -63,8 +100,8 @@ class Month
       counter += 1
       day += 1
     end
-
   end
+=end
 
   def month_title
     month_string = ''

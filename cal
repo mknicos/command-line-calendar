@@ -1,17 +1,27 @@
 #!/usr/bin/env ruby
 
 require_relative "lib/zeller.rb"
-require_relative "lib/print_month.rb"
 require_relative "lib/month.rb"
 
 month = ARGV[0]
 year  = ARGV[1]
 
 raise ArgumentError, "Cal only accepts a 2 digit month"  unless month.to_s.length == 2
+raise ArgumentError, "Not a valid month" unless month.to_i >= 1 && month.to_i <=12
 raise ArgumentError, "Cal only accepts a 4 digit year"  unless year.to_s.length == 4
+raise ArgumentError, "Not a valid year" unless year.to_i >= 1800 && year.to_i <= 3000
 month = month.to_s.delete("0").to_i   #remove leading zeros from month
 year = year.to_i
 
-start_day = Zeller.find_start_day(month, year)
 input_month = Month.new(month, year)
-PrintMonth.print_one_month(month, year, start_day, days_in_month)
+title = input_month.month_title
+week_days = "Su Mo Tu We Th Fr Sa"
+lines = input_month.get_line_arrays
+lines.flatten!
+
+#Print Month
+print title + "\n"
+print week_days + "\n"
+lines.each{|char| print char}
+
+#PrintMonth.print_one_month(month, year, start_day, days_in_month)

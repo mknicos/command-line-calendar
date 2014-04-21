@@ -160,4 +160,15 @@ class TestMonth < MiniTest::Unit::TestCase
     leap_year = m1.is_leap_year?
     assert_equal false, leap_year
   end
+
+
+#----------Line Arrays----------#
+
+  def test_line_arrays_1
+    m1 = Month.new(3, 2015)
+    actual_arrays = m1.get_line_arrays
+    assert_equal 13, actual_arrays[0].length
+    assert_equal 13, actual_arrays[1].length
+  end
+
 end
