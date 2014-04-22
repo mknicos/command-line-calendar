@@ -72,4 +72,5 @@ class TestCalIntegration < Test::Unit::TestCase
     expected_output = `cal 03 2015`
     assert_equal expected_output, output
   end
+
 end

@@ -5,39 +5,36 @@ require_relative "lib/month.rb"
 
 finding_month = false
 if ARGV.length == 2 #user enters month and year
-  if ARGV[0].length == 2 #month is first
+  if ARGV[0].length == 2 #month is first argument
     month = ARGV[0]
     year  = ARGV[1]
   elsif
-    ARGV[1].length == 2 #year is first
+    ARGV[1].length == 2 #year is first argument
     month = ARGV[1]
     year  = ARGV[0]
   end
   raise ArgumentError, "Cal only accepts a 2 digit month"  unless month.to_s.length == 2
   raise ArgumentError, "Not a valid month" unless month.to_i >= 1 && month.to_i <=12
+  raise ArgumentError, "Not a valid year" unless year.to_i >= 1800 && year.to_i <= 3000
+  raise ArgumentError, "Cal only accepts a 4 digit year"  unless year.to_s.length == 4
   finding_month = true
+
 elsif ARGV.length == 1
   year = ARGV[0]
   raise ArgumentError, "Cal only accepts a 4 digit year"  unless year.to_s.length == 4
   raise ArgumentError, "Not a valid year" unless year.to_i >= 1800 && year.to_i <= 3000
+
 else
   raise ArgumentError, "Input must be (mm yyyy), (yyyy mm), or (yyyy)"
 end
 
 
 if finding_month
-  #print_Month
   month = month.to_s.delete("0").to_i   #remove leading zeros from month
   year = year.to_i
-
   input_month = Month.new(month, year)
-  title = input_month.month_title
-  week_days = "Su Mo Tu We Th Fr Sa"
-
-  lines = input_month.get_line_arrays
-  lines.flatten!
-  lines = lines.join()
-  print title + "\n"
-  print week_days + "\n"
-  print lines
+  input_month.to_s
+else
+  puts "Lets find the year"
 end
+
