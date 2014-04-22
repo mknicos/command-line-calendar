@@ -18,10 +18,9 @@ title = input_month.month_title
 week_days = "Su Mo Tu We Th Fr Sa"
 lines = input_month.get_line_arrays
 lines.flatten!
+lines = lines.join()
 
 #Print Month
 print title + "\n"
 print week_days + "\n"
-lines.each{|char| print char}
-
-#PrintMonth.print_one_month(month, year, start_day, days_in_month)
+print lines

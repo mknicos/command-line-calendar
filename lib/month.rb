@@ -57,7 +57,7 @@ class Month
         day_arrays[index] << "\s"
       end
       day_arrays[index] << day
-      unless counter == 6
+      unless counter == 6 or day == days_in_month
         day_arrays[index] << "\s"
       end
       counter += 1
