@@ -54,20 +54,20 @@ class Month
 
     days_in_month.times do
       if day < 10
-        day_arrays[index] << "\s\s"
-      else
         day_arrays[index] << "\s"
       end
       day_arrays[index] << day
+      unless counter == 6
+        day_arrays[index] << "\s"
+      end
       counter += 1
       day += 1
-      if counter == 6
+      if counter == 7
         counter = 0
         index += 1
       end
     end
-    #add line break at end of each array
-    day_arrays.each { |array| array << "\n"}
+    day_arrays.each{|arr| arr << "\n"}
     return day_arrays
   end
 
