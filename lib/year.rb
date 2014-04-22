@@ -12,39 +12,41 @@ class Year
   end
 
   def print_month_arrays
-    jan = Month.new(1, @year)
-    jan_title = jan.month_title
+    month_count = 4
+    jan = Month.new(month_count, @year)
+    jan_title = jan.month_name
     jan_lines = jan.get_line_arrays
-
-    index = 4
-    2.times do
-      days_in_line = jan_lines[index].length
-      spaces = "\s\s\s"
-      spaces_needed = 7 - days_in_line
-      spaces_needed.times {jan_lines[index] << spaces}
-      index += 1
-    end
 
     joined_jan_lines = []
     jan_lines.each {|line| joined_jan_lines << line.join()}
 
-    feb = Month.new(2, @year)
-    feb_title = feb.month_title
-    feb_lines = feb.get_line_arrays
-
     index = 4
     2.times do
-      days_in_line = feb_lines[index].length
-      spaces = "\s\s\s"
-      spaces_needed = 7 - days_in_line
-      spaces_needed.times {feb_lines[index] << spaces}
+      chars_in_line = joined_jan_lines[index].length
+      spaces_needed = 20 - chars_in_line
+      spaces_needed.times {joined_jan_lines[index] << "\s"}
+      index += 1
     end
+    
+    month_count += 1
+    feb = Month.new(month_count, @year)
+    feb_title = feb.month_name
+    feb_lines = feb.get_line_arrays
 
     joined_feb_lines = []
     feb_lines.each {|line| joined_feb_lines << line.join()}
 
-    mar = Month.new(3, @year)
-    mar_title = mar.month_title
+    index = 4
+    2.times do
+      chars_in_line = joined_feb_lines[index].length
+      spaces_needed = 20 - chars_in_line
+      spaces_needed.times {joined_feb_lines[index] <<  "\s"}
+      index += 1
+    end
+
+    month_count += 1
+    mar = Month.new(month_count, @year)
+    mar_title = mar.month_name
     mar_lines = mar.get_line_arrays
     joined_mar_lines = []
     mar_lines.each {|line| joined_mar_lines << line.join()}
@@ -56,7 +58,6 @@ class Year
     print joined_jan_lines[index] + "\s\s" + joined_feb_lines[index] + "\s\s" + joined_mar_lines[index] + "\n"
     index += 1
     end
-    #print jan_lines[0] + "\s\s" + feb_lines[0] + "\s\s" + mar_lines + "\n"
 
   end
 
