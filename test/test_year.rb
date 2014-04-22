@@ -23,4 +23,16 @@ class TestYear < Test::Unit::TestCase
     assert_equal expected, output
   end
 
+  def test_2012
+    output = `ruby cal 2012`
+    expected = `cal 2012`
+    assert_equal expected, output
+  end
+
+  def test_loop
+    for i in 1800..3000
+      assert_equal `ruby cal #{i}`, `cal #{i}`
+    end
+  end
+
 end
