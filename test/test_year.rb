@@ -30,6 +30,7 @@ class TestYear < Test::Unit::TestCase
   end
 
   def test_loop
+    skip
     for i in 1800..3000
       assert_equal `ruby cal #{i}`, `cal #{i}`
     end
