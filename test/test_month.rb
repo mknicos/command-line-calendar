@@ -21,14 +21,14 @@ class TestMonth < MiniTest::Unit::TestCase
 
   def test_month_title_long_name
     x = Month.new(2, 1998)
-    expected = '   February 1998'
+    expected = '   February 1998    '
     actual = x.month_title
     assert_equal expected, actual
   end
 
   def test_month_title_short_name
     x = Month.new(4, 1998)
-    expected = '     April 1998'
+    expected = '     April 1998     '
     actual = x.month_title
     assert_equal expected, actual
   end

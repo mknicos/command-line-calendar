@@ -67,14 +67,15 @@ class Month
         index += 1
       end
     end
-    day_arrays.each{|arr| arr << "\n"}
     return day_arrays
   end
 
   def to_s
-    title = month_title
+    title = month_title.rstrip
     print title + "\n" + "Su Mo Tu We Th Fr Sa" + "\n"
-    lines = get_line_arrays.flatten!
+    lines = get_line_arrays
+    lines.each{|arr| arr << "\n"}
+    lines.flatten!
     lines = lines.join()
     print lines
   end
@@ -107,6 +108,6 @@ class Month
     when 12
       month_string = 'December'
     end
-    month_string = (month_string + ' ' + @year.to_s).center(20).rstrip
+    month_string = (month_string + ' ' + @year.to_s).center(20)
   end
 end

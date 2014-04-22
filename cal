@@ -2,6 +2,7 @@
 
 require_relative "lib/zeller.rb"
 require_relative "lib/month.rb"
+require_relative "lib/year.rb"
 
 finding_month = false
 if ARGV.length == 2 #user enters month and year
@@ -35,6 +36,8 @@ if finding_month
   input_month = Month.new(month, year)
   input_month.to_s
 else
-  puts "Lets find the year"
+  year = year.to_i
+  input_year = Year.new(year)
+  input_year.to_s
 end
 
