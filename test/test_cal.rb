@@ -73,4 +73,10 @@ class TestCalIntegration < Test::Unit::TestCase
     assert_equal expected_output, output
   end
 
+  def test_use_current_month
+    output = `ruby cal`
+    expected_output = `cal`
+    assert_equal expected_output, output
+  end
+
 end

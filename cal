@@ -5,6 +5,7 @@ require_relative "lib/month.rb"
 require_relative "lib/year.rb"
 
 finding_month = false
+finding_current_month = false
 if ARGV.length == 2 #user enters month and year
   if ARGV[0].length == 2 #month is first argument
     month = ARGV[0]
@@ -25,6 +26,8 @@ elsif ARGV.length == 1
   raise ArgumentError, "Cal only accepts a 4 digit year"  unless year.to_s.length == 4
   raise ArgumentError, "Not a valid year" unless year.to_i >= 1800 && year.to_i <= 3000
 
+elsif ARGV.length == 0
+  finding_current_month = true
 else
   raise ArgumentError, "Input must be (mm yyyy), (yyyy mm), or (yyyy)"
 end
@@ -35,6 +38,14 @@ if finding_month
   year = year.to_i
   input_month = Month.new(month, year)
   input_month.to_s
+
+elsif finding_current_month
+  date = Time.new
+  month = date.month
+  year = date.year
+  current_month = Month.new(month, year)
+  current_month.to_s
+
 else
   year = year.to_i
   input_year = Year.new(year)
