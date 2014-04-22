@@ -6,13 +6,16 @@ class Year
   end
 
   def to_s
-    year_title = @year.to_s.center(64).rstrip + "\n\n"
+    year_title = @year.to_s.center(63).rstrip + "\n\n"
     print year_title
-    print_month_arrays
+    print_month_arrays(1)
+    print_month_arrays(4)
+    print_month_arrays(7)
+    print_month_arrays(10)
   end
 
-  def print_month_arrays
-    month_count = 4
+  def print_month_arrays(num)
+    month_count = num
     jan = Month.new(month_count, @year)
     jan_title = jan.month_name
     jan_lines = jan.get_line_arrays
