@@ -18,7 +18,7 @@ class Year
     num_months_in_year = 12
     num_months_in_year.times do
       month = Month.new(current_month, @year)
-      months_titles << month.month_name
+      months_titles << month.month_name_no_year
       weeks = []
       month.get_weeks.each {|week| weeks << week.join()}
       if current_column < 3

@@ -35,7 +35,8 @@ class Month
 
     #space at start of fist week of month
     triple_space = "\s\s\s"
-    start_day.times { weeks[0] << triple_space}
+    first_week = 0
+    start_day.times { weeks[first_week] << triple_space}
 
     day_of_week = start_day
     days_in_month = num_of_days_in_month
@@ -43,10 +44,10 @@ class Month
     saturday = 6 #sunday = 0, monday 1, etc...
     day = 1
     week = 0
-    double_digits = 10
+    first_double_digit = 10
 
     days_in_month.times do
-      if day < double_digits
+      if day < first_double_digit
         weeks[week] << "\s"
       end
       weeks[week] << day
@@ -64,17 +65,17 @@ class Month
   end
 
   def to_s
-    title = month_title.rstrip
+    title = month_name_with_year.rstrip
     print title + "\n" + "Su Mo Tu We Th Fr Sa" + "\n"
     weeks = get_weeks.each{|week| week << "\n"}
     print weeks.flatten.join()
   end
 
-  def month_title    #for indiv month display
+  def month_name_with_year    #for indiv month display
     month_title = (MONTH_NAMES[@month - 1] + ' ' + @year.to_s).center(20)
   end
 
-  def month_name    #for year  display
+  def month_name_no_year    #for year  display
     month_title = (MONTH_NAMES[@month - 1]).center(20)
   end
 
