@@ -4,6 +4,7 @@ class Month
   def initialize(month, year)
     @month = month
     @year = year
+    @@month_names = ['January','February','March','April','May','June','July','August','September','October','November','December']
   end
 
   def num_of_days_in_month
@@ -81,65 +82,10 @@ class Month
   end
 
   def month_title    #for indiv month display
-    month_string = ''
-    case @month
-    when 1
-      month_string = 'January'
-    when 2
-      month_string = 'February'
-    when 3
-      month_string = 'March'
-    when 4
-      month_string = 'April'
-    when 5
-      month_string = 'May'
-    when 6
-      month_string = 'June'
-    when 7
-      month_string = 'July'
-    when 8
-      month_string = 'August'
-    when 9
-      month_string = 'September'
-    when 10
-      month_string = 'October'
-    when 11
-      month_string = 'November'
-    when 12
-      month_string = 'December'
-    end
-    month_string = (month_string + ' ' + @year.to_s).center(20)
+    month_title = (@@month_names[@month - 1] + ' ' + @year.to_s).center(20)
   end
 
   def month_name    #for year  display
-    month_string = ''
-    case @month
-    when 1
-      month_string = 'January'
-    when 2
-      month_string = 'February'
-    when 3
-      month_string = 'March'
-    when 4
-      month_string = 'April'
-    when 5
-      month_string = 'May'
-    when 6
-      month_string = 'June'
-    when 7
-      month_string = 'July'
-    when 8
-      month_string = 'August'
-    when 9
-      month_string = 'September'
-    when 10
-      month_string = 'October'
-    when 11
-      month_string = 'November'
-    when 12
-      month_string = 'December'
-    end
-    month_string = month_string.center(20)
-    month_string
+    month_title = (@@month_names[@month - 1]).center(20)
   end
 end
