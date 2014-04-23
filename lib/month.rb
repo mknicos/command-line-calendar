@@ -1,10 +1,10 @@
 class Month
+  MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December']
   attr_reader :month, :year
 
   def initialize(month, year)
     @month = month
     @year = year
-    @@month_names = ['January','February','March','April','May','June','July','August','September','October','November','December']
   end
 
   def num_of_days_in_month
@@ -76,16 +76,14 @@ class Month
     print title + "\n" + "Su Mo Tu We Th Fr Sa" + "\n"
     lines = get_line_arrays
     lines.each{|arr| arr << "\n"}
-    lines.flatten!
-    lines = lines.join()
-    print lines
+    print lines.flatten.join()
   end
 
   def month_title    #for indiv month display
-    month_title = (@@month_names[@month - 1] + ' ' + @year.to_s).center(20)
+    month_title = (MONTH_NAMES[@month - 1] + ' ' + @year.to_s).center(20)
   end
 
   def month_name    #for year  display
-    month_title = (@@month_names[@month - 1]).center(20)
+    month_title = (MONTH_NAMES[@month - 1]).center(20)
   end
 end
