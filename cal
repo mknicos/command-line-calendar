@@ -6,6 +6,7 @@ require_relative "lib/year.rb"
 
 finding_month = false
 finding_current_month = false
+
 if ARGV.length == 2 #user enters month and year
   if ARGV[0].length == 2 #month is first argument
     month = ARGV[0]

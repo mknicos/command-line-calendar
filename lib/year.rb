@@ -12,7 +12,7 @@ class Year
   end
 
   def print_months
-    twelve_months = [] #multidimensional array with 3 arrays of month lines in it
+    twelve_months = [] #multidimensional array with 12 month arrays in it
     months_titles = [] #will hold month names
     month_count = 1 #1 == jan, 2 == feb, etc...
     column_counter = 1 #allows for distinction on third column for new line chars
