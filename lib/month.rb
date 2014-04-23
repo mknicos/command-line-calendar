@@ -25,6 +25,59 @@ class Month
     end
   end
 
+
+  def get_weeks
+
+    #each array in this array represents a different week in a month
+    weeks = [[],[],[],[],[],[]]
+
+    start_day = Zeller.find_start_day(@month, @year)
+
+    #space at start of fist week of month
+    triple_space = "\s\s\s"
+    start_day.times { weeks[0] << triple_space}
+
+    day_of_week = start_day
+    days_in_month = num_of_days_in_month
+    end_of_week = 7
+    saturday = 6 #sunday = 0, monday 1, etc...
+    day = 1
+    week = 0
+    double_digits = 10
+
+    days_in_month.times do
+      if day < double_digits
+        weeks[week] << "\s"
+      end
+      weeks[week] << day
+      unless day_of_week == saturday or day == days_in_month
+        weeks[week] << "\s"
+      end
+      day_of_week += 1
+      day += 1
+      if day_of_week == end_of_week
+        day_of_week = 0
+        week += 1
+      end
+    end
+    weeks
+  end
+
+  def to_s
+    title = month_title.rstrip
+    print title + "\n" + "Su Mo Tu We Th Fr Sa" + "\n"
+    weeks = get_weeks.each{|week| week << "\n"}
+    print weeks.flatten.join()
+  end
+
+  def month_title    #for indiv month display
+    month_title = (MONTH_NAMES[@month - 1] + ' ' + @year.to_s).center(20)
+  end
+
+  def month_name    #for year  display
+    month_title = (MONTH_NAMES[@month - 1]).center(20)
+  end
+
   def is_leap_year?
     if @year % 400 == 0
       return true
@@ -35,55 +88,5 @@ class Month
     else
       return false
     end
-  end
-
-  def get_line_arrays
-
-    #each array in this array represents a different week in a month
-    day_arrays = [[],[],[],[],[],[]]
-
-    start_day = Zeller.find_start_day(@month, @year)
-
-    #space at start of fist week of month
-    triple_space = "\s\s\s"
-    start_day.times { day_arrays[0] << triple_space}
-
-    counter = start_day
-    days_in_month = num_of_days_in_month
-    day = 1
-    index = 0
-
-    days_in_month.times do
-      if day < 10
-        day_arrays[index] << "\s"
-      end
-      day_arrays[index] << day
-      unless counter == 6 or day == days_in_month
-        day_arrays[index] << "\s"
-      end
-      counter += 1
-      day += 1
-      if counter == 7
-        counter = 0
-        index += 1
-      end
-    end
-    return day_arrays
-  end
-
-  def to_s
-    title = month_title.rstrip
-    print title + "\n" + "Su Mo Tu We Th Fr Sa" + "\n"
-    lines = get_line_arrays
-    lines.each{|arr| arr << "\n"}
-    print lines.flatten.join()
-  end
-
-  def month_title    #for indiv month display
-    month_title = (MONTH_NAMES[@month - 1] + ' ' + @year.to_s).center(20)
-  end
-
-  def month_name    #for year  display
-    month_title = (MONTH_NAMES[@month - 1]).center(20)
   end
 end

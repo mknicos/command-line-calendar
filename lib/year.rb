@@ -6,7 +6,8 @@ class Year
   end
 
   def to_s
-    year_title = @year.to_s.center(63).rstrip + "\n\n"
+    width_of_year_display = 63
+    year_title = @year.to_s.center(width_of_year_display).rstrip + "\n\n"
     print year_title
 
     months = [] #multidimensional array with 12 month arrays in it
@@ -18,10 +19,8 @@ class Year
     num_months_in_year.times do
       month = Month.new(current_month, @year)
       months_titles << month.month_name
-      month_lines = month.get_line_arrays
-
-      joined_month_lines = []
-      month_lines.each {|line| joined_month_lines << line.join()}
+      weeks = []
+      month.get_weeks.each {|week| weeks << week.join()}
       if current_column < 3
         #ensure weeks in months in first two columns fill space to end of month
 
@@ -29,15 +28,15 @@ class Year
         last_two_lines_of_month = 2
         last_two_lines_of_month.times do
           width_of_one_month = 20
-          spaces_needed = width_of_one_month - (joined_month_lines[week].length)
-          spaces_needed.times {joined_month_lines[week] << "\s"}
+          spaces_needed = width_of_one_month - (weeks[week].length)
+          spaces_needed.times {weeks[week] << "\s"}
           week += 1
         end
         current_column += 1 #changes which column the next month will be in
       else #if else hits, this month was in 3rd columns
         current_column = 1
       end
-      months << joined_month_lines
+      months << weeks
       current_month += 1 #changes which month is being looped over
     end
 
