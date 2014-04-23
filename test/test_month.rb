@@ -3,12 +3,6 @@ require "month"
 
 class TestMonth < MiniTest::Unit::TestCase
 
-  #---------Inititialize--------------#
-  def test_month_clas
-    x = Month.new(2, 1988)
-    assert_instance_of Month, x
-  end
-
   def test_month_instance_var
     x = Month.new(2, 1988)
     assert_equal 2, x.month

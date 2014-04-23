@@ -1,8 +1,5 @@
 class Zeller
 
-  def initialize
-  end
-
   def self.find_start_day(month_input, year_input)
 
     year = year_input.to_i

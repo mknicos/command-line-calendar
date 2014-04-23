@@ -39,12 +39,12 @@ class Month
 
   def get_line_arrays
 
-    #each array in this array represents a different line
+    #each array in this array represents a different week in a month
     day_arrays = [[],[],[],[],[],[]]
 
     start_day = Zeller.find_start_day(@month, @year)
 
-    #space at start of fist line
+    #space at start of fist week of month
     triple_space = "\s\s\s"
     start_day.times { day_arrays[0] << triple_space}
 
